@@ -6,6 +6,7 @@ import com.pragma.reactive.technologies.technologiesservice.infrastructure.outpu
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.mapper.ITechnologyEntityMapper;
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.repository.TechnologyRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
