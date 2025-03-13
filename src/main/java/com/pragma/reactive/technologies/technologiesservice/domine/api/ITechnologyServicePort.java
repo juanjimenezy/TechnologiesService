@@ -5,7 +5,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface ITechnologyServicePort {
-    Mono<Technology> save(Mono<Technology> technology);
+    Mono<Technology> save(Technology technology);
     Mono<Technology> findById(Long id);
     Flux<Technology> findAll();
 }

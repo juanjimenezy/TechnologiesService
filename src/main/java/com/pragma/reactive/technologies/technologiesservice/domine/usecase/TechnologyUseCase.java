@@ -7,6 +7,8 @@ import com.pragma.reactive.technologies.technologiesservice.domine.spi.ITechnolo
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 public class TechnologyUseCase implements ITechnologyServicePort {
 
     private final ITechnologyPersistencePort persistencePort;
@@ -16,12 +18,10 @@ public class TechnologyUseCase implements ITechnologyServicePort {
     }
 
     @Override
-    public Mono<Technology> save(Mono<Technology> technology) {
-        return technology.flatMap(tech ->
-                validateName(tech.getName())
-                        .then(validateDescription(tech.getDescription()))
-                        .then(persistencePort.save(tech))
-        );
+    public Mono<Technology> save(Technology technology) {
+        return validateName(technology.getName())
+                .then(validateDescription(technology.getDescription()))
+                .then(Mono.defer(() -> persistencePort.save(technology)));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class TechnologyUseCase implements ITechnologyServicePort {
 
     private Mono<Void> validateName(String name){
         return persistencePort.findByName(name)
-                .flatMap(tech -> Mono.error(new DomainException("Name already exists"))) // Si existe, lanza excepción
+                .flatMap(tech -> Mono.error(new DomainException("Name already exists")))
                 .switchIfEmpty(Mono.defer(() -> {
                     if (name.length() >= 50) {
                         return Mono.error(new DomainException("Name too short"));
@@ -50,7 +50,6 @@ public class TechnologyUseCase implements ITechnologyServicePort {
         if (description.length() <= 50){
             throw new DomainException("Description too short");
         }
-
         return Mono.empty();
     }
 

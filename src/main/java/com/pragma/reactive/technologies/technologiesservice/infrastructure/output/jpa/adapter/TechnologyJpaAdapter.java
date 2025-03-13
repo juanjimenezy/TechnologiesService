@@ -2,14 +2,12 @@ package com.pragma.reactive.technologies.technologiesservice.infrastructure.outp
 
 import com.pragma.reactive.technologies.technologiesservice.domine.model.Technology;
 import com.pragma.reactive.technologies.technologiesservice.domine.spi.ITechnologyPersistencePort;
+import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.entity.TechnologyEntity;
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.mapper.ITechnologyEntityMapper;
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.repository.TechnologyRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class TechnologyJpaAdapter implements ITechnologyPersistencePort {
@@ -19,22 +17,26 @@ public class TechnologyJpaAdapter implements ITechnologyPersistencePort {
 
 
     @Override
-    public Mono<Technology> save(Technology tecnology) {
-        return null;
+    public Mono<Technology> save(Technology technology) {
+        TechnologyEntity entity = technologyEntityMapper.toTechnologyEntity(technology);
+        return technologyRepository.save(entity).map(technologyEntityMapper::toTechnologyModel);
     }
 
     @Override
     public Mono<Technology> findById(Long id) {
-        return Mono.empty();
+        return technologyRepository.findById(id)
+                .map(technologyEntityMapper::toTechnologyModel);
     }
 
     @Override
     public Mono<Technology> findByName(String name) {
-        return Mono.empty();
+        return technologyRepository.findByName(name)
+                .map(technologyEntityMapper::toTechnologyModel);
     }
 
     @Override
     public Flux<Technology> findAll() {
-        return Flux.empty();
+        return technologyRepository.findAll()
+                .map(technologyEntityMapper::toTechnologyModel);
     }
 }

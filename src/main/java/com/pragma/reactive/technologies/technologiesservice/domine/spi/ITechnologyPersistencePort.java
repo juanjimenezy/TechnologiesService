@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ITechnologyPersistencePort {
-    Mono<Technology>  save(Technology  tecnology);
+    Mono<Technology> save(Technology  tecnology);
     Mono<Technology> findById(Long id);
-    Mono<Technology>findByName(String name);
+    Mono<Technology> findByName(String name);
     Flux<Technology> findAll();
 }

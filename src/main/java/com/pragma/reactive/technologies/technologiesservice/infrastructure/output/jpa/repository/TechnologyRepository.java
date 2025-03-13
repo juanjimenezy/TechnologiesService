@@ -3,10 +3,11 @@ package com.pragma.reactive.technologies.technologiesservice.infrastructure.outp
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.entity.TechnologyEntity;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
 @Repository
 public interface TechnologyRepository extends ReactiveCrudRepository<TechnologyEntity, Long> {
-    Optional<TechnologyEntity> findByName(String name);
+    Mono<TechnologyEntity> findByName(String name);
 }

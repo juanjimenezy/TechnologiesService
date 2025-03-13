@@ -5,9 +5,8 @@ import com.pragma.reactive.technologies.technologiesservice.application.dto.resp
 import com.pragma.reactive.technologies.technologiesservice.application.mapper.ITechnologyRequestMapper;
 import com.pragma.reactive.technologies.technologiesservice.application.mapper.ITechnologyResponseMapper;
 import com.pragma.reactive.technologies.technologiesservice.domine.api.ITechnologyServicePort;
-import com.pragma.reactive.technologies.technologiesservice.domine.model.Technology;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public class TechnologyHandler implements ITechnologyHandler {
 
@@ -21,18 +20,22 @@ public class TechnologyHandler implements ITechnologyHandler {
         this.technologyResponseMapper = technologyResponseMapper;
     }
 
+
     @Override
-    public TechnologyResponseDTO createTechnology(TechnologyRequestDTO technologyRequestDTO) {
-        return technologyResponseMapper.toResponse(technologyServicePort.save(technologyRequestMapper.toTechnology(TechnologyRequestDTO)));
+    public Mono<TechnologyResponseDTO> createTechnology(TechnologyRequestDTO technologyRequestDTO) {
+        return technologyServicePort.save(technologyRequestMapper.toTechnology(technologyRequestDTO))
+                .map(technologyResponseMapper::toResponse);
     }
 
     @Override
-    public List<TechnologyResponseDTO> getTechnologies() {
-        return technologyResponseMapper.toResponseList(technologyServicePort.findAll());
+    public Flux<TechnologyResponseDTO> getTechnologies() {
+        return technologyServicePort.findAll()
+                .map(technologyResponseMapper::toResponse);
     }
 
     @Override
-    public TechnologyResponseDTO getTechnology(Long technologyId) {
-        return technologyResponseMapper.toResponse(technologyServicePort.findById(technologyId));
+    public Mono<TechnologyResponseDTO> getTechnology(Long technologyId) {
+        return technologyServicePort.findById(technologyId)
+                .map(technologyResponseMapper::toResponse);
     }
 }

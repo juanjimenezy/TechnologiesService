@@ -10,5 +10,6 @@ import reactor.core.publisher.Mono;
         unmappedSourcePolicy = ReportingPolicy.IGNORE,
         unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ITechnologyRequestMapper {
-    Mono<Technology> toTechnology(TechnologyRequestDTO technologyRequestDTO);
+    Mono<Technology> toTechnologyMono(TechnologyRequestDTO technologyRequestDTO);
+    Technology toTechnology(TechnologyRequestDTO technologyRequestDTO);
 }

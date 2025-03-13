@@ -2,12 +2,11 @@ package com.pragma.reactive.technologies.technologiesservice.application.handler
 
 import com.pragma.reactive.technologies.technologiesservice.application.dto.request.TechnologyRequestDTO;
 import com.pragma.reactive.technologies.technologiesservice.application.dto.response.TechnologyResponseDTO;
-import com.pragma.reactive.technologies.technologiesservice.domine.model.Technology;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 public interface ITechnologyHandler {
-    TechnologyResponseDTO createTechnology(TechnologyRequestDTO technologyRequestDTO);
-    List<TechnologyResponseDTO> getTechnologies();
-    TechnologyResponseDTO getTechnology(Long technologyId);
+    Mono<TechnologyResponseDTO> createTechnology(TechnologyRequestDTO technologyRequestDTO);
+    Flux<TechnologyResponseDTO> getTechnologies();
+    Mono<TechnologyResponseDTO> getTechnology(Long technologyId);
 }
