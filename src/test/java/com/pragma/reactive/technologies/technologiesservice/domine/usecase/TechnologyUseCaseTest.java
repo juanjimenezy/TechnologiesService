@@ -82,6 +82,14 @@ class TechnologyUseCaseTest {
                 .verifyComplete();
     }
 
+    @Test
+    void testFindAll_PagedDesc() {
+        when(persistencePort.findAllPagedDesc(10, 0)).thenReturn(Flux.just(technology));
+        StepVerifier.create(technologyUseCase.findAll(0, 10, false))
+                .expectNext(technology)
+                .verifyComplete();
+    }
+
 
     @Test
     void testSave_NameTooLong() {
