@@ -4,6 +4,7 @@ import com.pragma.reactive.technologies.technologiesservice.application.dto.requ
 import com.pragma.reactive.technologies.technologiesservice.application.dto.request.TechnologyRequestDTO;
 import com.pragma.reactive.technologies.technologiesservice.application.dto.response.TechnologyResponseDTO;
 import com.pragma.reactive.technologies.technologiesservice.application.handler.ITechnologyHandler;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class TechnologyController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<TechnologyResponseDTO> saveTechnology(@RequestBody TechnologyRequestDTO technologyRequestDTO) {
+    public Mono<TechnologyResponseDTO> saveTechnology(@Valid @RequestBody TechnologyRequestDTO technologyRequestDTO) {
         return technologyHandler.createTechnology(technologyRequestDTO);
     }
 

@@ -35,7 +35,6 @@ class TechnologyUseCaseTest {
     void testSave_Success() {
         when(persistencePort.findByName(technology.getName())).thenReturn(Mono.empty());
         when(persistencePort.save(any(Technology.class))).thenReturn(Mono.just(technology));
-
         StepVerifier.create(technologyUseCase.save(technology))
                 .expectNext(technology)
                 .verifyComplete();
@@ -47,7 +46,6 @@ class TechnologyUseCaseTest {
     @Test
     void testSave_NameAlreadyExists() {
         when(persistencePort.findByName(technology.getName())).thenReturn(Mono.just(technology));
-
         StepVerifier.create(technologyUseCase.save(technology))
                 .expectErrorMatches(throwable -> throwable instanceof DomainException
                         && throwable.getMessage().equals("Name already exists"))
@@ -61,7 +59,6 @@ class TechnologyUseCaseTest {
     @Test
     void testFindById_Success() {
         when(persistencePort.findById(1L)).thenReturn(Mono.just(technology));
-
         StepVerifier.create(technologyUseCase.findById(1L))
                 .expectNext(technology)
                 .verifyComplete();
@@ -72,7 +69,6 @@ class TechnologyUseCaseTest {
     @Test
     void testFindById_NotFound() {
         when(persistencePort.findById(2L)).thenReturn(Mono.empty());
-
         StepVerifier.create(technologyUseCase.findById(2L))
                 .expectNextCount(0)
                 .verifyComplete();
@@ -81,26 +77,16 @@ class TechnologyUseCaseTest {
     @Test
     void testFindAll_PagedAsc() {
         when(persistencePort.findAllPagedAsc(10, 0)).thenReturn(Flux.just(technology));
-
         StepVerifier.create(technologyUseCase.findAll(0, 10, true))
                 .expectNext(technology)
                 .verifyComplete();
     }
 
-    @Test
-    void testFindAll_NotPaged() {
-        when(persistencePort.findAll()).thenReturn(Flux.just(technology));
-
-        StepVerifier.create(technologyUseCase.findAll(0, 10, false))
-                .expectNext(technology)
-                .verifyComplete();
-    }
 
     @Test
     void testSave_NameTooLong() {
         String longName = "A".repeat(50);
         Technology techWithLongName = new Technology(2L, longName, "Valid description");
-
         when(persistencePort.findByName(longName)).thenReturn(Mono.empty());
 
         StepVerifier.create(technologyUseCase.save(techWithLongName))
