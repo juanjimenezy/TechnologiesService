@@ -1,0 +1,19 @@
+server:
+    port: 8089
+
+spring:
+    application:
+        name: TechnologiesService
+
+    r2dbc:
+        url: r2dbc:mysql://localhost:3306/technologies-db
+        username: root
+        password: root
+        pool:
+            enabled: true
+
+    sql:
+        init:
+            mode: always
+            platform: mysql
+

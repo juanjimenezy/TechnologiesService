@@ -33,7 +33,7 @@ public class TechnologyUseCase implements ITechnologyServicePort {
         if (asc) {
             return persistencePort.findAllPagedAsc(size,offset);
         }
-        return persistencePort.findAll();
+        return persistencePort.findAllPagedDesc(size,offset);
     }
 
     private Mono<Void> validateName(String name){
@@ -41,7 +41,7 @@ public class TechnologyUseCase implements ITechnologyServicePort {
                 .flatMap(tech -> Mono.error(new DomainException("Name already exists")))
                 .switchIfEmpty(Mono.defer(() -> {
                     if (name.length() >= 50) {
-                        return Mono.error(new DomainException("Name too short"));
+                        return Mono.error(new DomainException("Name too long"));
                     }
                     return Mono.empty();
                 }))
@@ -50,7 +50,7 @@ public class TechnologyUseCase implements ITechnologyServicePort {
 
     private Mono<Void> validateDescription(String description){
         if (description.length() >= 50){
-            throw new DomainException("Description too short");
+            throw new DomainException("Description too long");
         }
         return Mono.empty();
     }
