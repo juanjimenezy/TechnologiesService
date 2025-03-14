@@ -7,8 +7,6 @@ import com.pragma.reactive.technologies.technologiesservice.domine.spi.ITechnolo
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Optional;
-
 public class TechnologyUseCase implements ITechnologyServicePort {
 
     private final ITechnologyPersistencePort persistencePort;
