@@ -30,7 +30,11 @@ public class TechnologyUseCase implements ITechnologyServicePort {
     }
 
     @Override
-    public Flux<Technology> findAll() {
+    public Flux<Technology> findAll(int page, int size, boolean asc) {
+        int offset = page * size;
+        if (asc) {
+            return persistencePort.findAllPagedAsc(size,offset);
+        }
         return persistencePort.findAll();
     }
 
@@ -47,7 +51,7 @@ public class TechnologyUseCase implements ITechnologyServicePort {
     }
 
     private Mono<Void> validateDescription(String description){
-        if (description.length() <= 50){
+        if (description.length() >= 50){
             throw new DomainException("Description too short");
         }
         return Mono.empty();

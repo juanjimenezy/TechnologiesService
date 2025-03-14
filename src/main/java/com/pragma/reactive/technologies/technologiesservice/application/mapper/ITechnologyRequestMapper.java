@@ -4,10 +4,12 @@ import com.pragma.reactive.technologies.technologiesservice.application.dto.requ
 import com.pragma.reactive.technologies.technologiesservice.domine.model.Technology;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.context.annotation.Primary;
 
 @Mapper(componentModel = "spring",
         unmappedSourcePolicy = ReportingPolicy.IGNORE,
         unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Primary
 public interface ITechnologyRequestMapper {
     Technology toTechnologyMono(TechnologyRequestDTO technologyRequestDTO);
     Technology toTechnology(TechnologyRequestDTO technologyRequestDTO);

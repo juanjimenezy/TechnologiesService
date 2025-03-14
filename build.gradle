@@ -21,7 +21,6 @@ configurations {
 
 repositories {
     mavenCentral()
-    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -46,7 +45,7 @@ dependencies {
 
 
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
-    implementation 'dev.miku:r2dbc-mysql:0.8.2.RELEASE'
+    implementation 'io.asyncer:r2dbc-mysql:1.0.2'
 
 }
 

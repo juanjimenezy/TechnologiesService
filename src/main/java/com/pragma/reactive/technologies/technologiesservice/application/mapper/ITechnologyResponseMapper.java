@@ -4,12 +4,14 @@ import com.pragma.reactive.technologies.technologiesservice.application.dto.resp
 import com.pragma.reactive.technologies.technologiesservice.domine.model.Technology;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.context.annotation.Primary;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring",
         unmappedSourcePolicy = ReportingPolicy.IGNORE,
         unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Primary
 public interface ITechnologyResponseMapper {
     TechnologyResponseDTO toResponse(Technology technology);
     List<TechnologyResponseDTO> toResponseList(List<Technology> technologies);

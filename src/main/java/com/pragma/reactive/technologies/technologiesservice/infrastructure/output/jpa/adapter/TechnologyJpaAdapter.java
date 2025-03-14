@@ -4,16 +4,15 @@ import com.pragma.reactive.technologies.technologiesservice.domine.model.Technol
 import com.pragma.reactive.technologies.technologiesservice.domine.spi.ITechnologyPersistencePort;
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.entity.TechnologyEntity;
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.mapper.ITechnologyEntityMapper;
-import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.repository.TechnologyRepository;
+import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.repository.ITechnologyRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 public class TechnologyJpaAdapter implements ITechnologyPersistencePort {
 
-    private final TechnologyRepository technologyRepository;
+    private final ITechnologyRepository technologyRepository;
     private final ITechnologyEntityMapper technologyEntityMapper;
 
 
@@ -38,6 +37,18 @@ public class TechnologyJpaAdapter implements ITechnologyPersistencePort {
     @Override
     public Flux<Technology> findAll() {
         return technologyRepository.findAll()
+                .map(technologyEntityMapper::toTechnologyModel);
+    }
+
+    @Override
+    public Flux<Technology> findAllPagedAsc(int limit, int offset) {
+        return technologyRepository.findAllPagedAsc(limit, offset)
+                .map(technologyEntityMapper::toTechnologyModel);
+    }
+
+    @Override
+    public Flux<Technology> findAllPagedDesc(int limit, int offset) {
+        return technologyRepository.findAllPagedDesc(limit, offset)
                 .map(technologyEntityMapper::toTechnologyModel);
     }
 }
