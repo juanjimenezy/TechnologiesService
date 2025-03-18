@@ -1,9 +1,9 @@
-package com.pragma.reactive.technologies.technologiesservice.domine.usecase;
+package com.pragma.reactive.technologies.technologiesservice.domain.usecase;
 
-import com.pragma.reactive.technologies.technologiesservice.domine.api.ITechnologyServicePort;
-import com.pragma.reactive.technologies.technologiesservice.domine.exception.DomainException;
-import com.pragma.reactive.technologies.technologiesservice.domine.model.Technology;
-import com.pragma.reactive.technologies.technologiesservice.domine.spi.ITechnologyPersistencePort;
+import com.pragma.reactive.technologies.technologiesservice.domain.api.ITechnologyServicePort;
+import com.pragma.reactive.technologies.technologiesservice.domain.exception.DomainException;
+import com.pragma.reactive.technologies.technologiesservice.domain.model.Technology;
+import com.pragma.reactive.technologies.technologiesservice.domain.spi.ITechnologyPersistencePort;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

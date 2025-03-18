@@ -1,4 +1,4 @@
-package com.pragma.reactive.technologies.technologiesservice.domine.model;
+package com.pragma.reactive.technologies.technologiesservice.domain.model;
 
 public class Technology {
     private Long id;

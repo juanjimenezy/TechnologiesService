@@ -1,6 +1,6 @@
-package com.pragma.reactive.technologies.technologiesservice.domine.spi;
+package com.pragma.reactive.technologies.technologiesservice.domain.spi;
 
-import com.pragma.reactive.technologies.technologiesservice.domine.model.Technology;
+import com.pragma.reactive.technologies.technologiesservice.domain.model.Technology;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

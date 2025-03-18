@@ -1,7 +1,7 @@
 package com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.adapter;
 
-import com.pragma.reactive.technologies.technologiesservice.domine.model.Technology;
-import com.pragma.reactive.technologies.technologiesservice.domine.spi.ITechnologyPersistencePort;
+import com.pragma.reactive.technologies.technologiesservice.domain.model.Technology;
+import com.pragma.reactive.technologies.technologiesservice.domain.spi.ITechnologyPersistencePort;
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.entity.TechnologyEntity;
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.mapper.ITechnologyEntityMapper;
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.repository.ITechnologyRepository;

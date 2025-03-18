@@ -1,6 +1,6 @@
 package com.pragma.reactive.technologies.technologiesservice.infrastructure.input.rest.controller.advice;
 
-import com.pragma.reactive.technologies.technologiesservice.domine.exception.DomainException;
+import com.pragma.reactive.technologies.technologiesservice.domain.exception.DomainException;
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.input.rest.controller.TechnologyController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

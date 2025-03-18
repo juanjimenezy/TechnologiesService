@@ -27,8 +27,14 @@ public class TechnologyController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Flux<TechnologyResponseDTO> getAllTechnologies(@RequestBody PageableRequestDTO pagueable) {
+    public Flux<TechnologyResponseDTO> getAllTechnologies(@Valid @RequestBody PageableRequestDTO pagueable) {
         return technologyHandler.getTechnologies(pagueable.getPage(), pagueable.getSize(), pagueable.isAsc());
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<TechnologyResponseDTO> getTechnology(@PathVariable Long id) {
+        return technologyHandler.getTechnology(id);
     }
 
 }

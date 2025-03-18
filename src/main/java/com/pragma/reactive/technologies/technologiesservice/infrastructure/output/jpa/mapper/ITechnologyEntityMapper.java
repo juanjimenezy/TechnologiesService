@@ -1,6 +1,6 @@
 package com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.mapper;
 
-import com.pragma.reactive.technologies.technologiesservice.domine.model.Technology;
+import com.pragma.reactive.technologies.technologiesservice.domain.model.Technology;
 import com.pragma.reactive.technologies.technologiesservice.infrastructure.output.jpa.entity.TechnologyEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

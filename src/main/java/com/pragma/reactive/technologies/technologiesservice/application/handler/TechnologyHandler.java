@@ -4,7 +4,7 @@ import com.pragma.reactive.technologies.technologiesservice.application.dto.requ
 import com.pragma.reactive.technologies.technologiesservice.application.dto.response.TechnologyResponseDTO;
 import com.pragma.reactive.technologies.technologiesservice.application.mapper.ITechnologyRequestMapper;
 import com.pragma.reactive.technologies.technologiesservice.application.mapper.ITechnologyResponseMapper;
-import com.pragma.reactive.technologies.technologiesservice.domine.api.ITechnologyServicePort;
+import com.pragma.reactive.technologies.technologiesservice.domain.api.ITechnologyServicePort;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

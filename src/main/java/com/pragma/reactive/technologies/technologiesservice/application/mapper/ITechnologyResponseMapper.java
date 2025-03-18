@@ -1,7 +1,7 @@
 package com.pragma.reactive.technologies.technologiesservice.application.mapper;
 
 import com.pragma.reactive.technologies.technologiesservice.application.dto.response.TechnologyResponseDTO;
-import com.pragma.reactive.technologies.technologiesservice.domine.model.Technology;
+import com.pragma.reactive.technologies.technologiesservice.domain.model.Technology;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.context.annotation.Primary;
